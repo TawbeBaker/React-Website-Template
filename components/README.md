@@ -42,15 +42,6 @@ A modern, responsive website template built with Next.js and Tailwind CSS. Perfe
 - **React Intersection Observer**: Scroll-based animations
 - **Headless UI**: Accessible UI components
 
-## System Requirements
-
-- **Node.js**: 18.0 or higher
-- **npm**: 8.0 or higher (comes with Node.js)
-- **Git**: For cloning the repository
-- **Modern Browser**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
-- **RAM**: 4GB minimum recommended
-- **Disk Space**: 500MB free space for dependencies and build files
-
 ## Quick Start
 
 ### Prerequisites
@@ -68,11 +59,9 @@ npm --version
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repository-url>
+   git clone <repository-url (The link might chagne for the futur, and it would be better to have a general formula for other templates. Another important thing is to learn to use our brains and learn to understand what we are doing, and not just doing it.)>
    cd template-react-website
    ```
-   
-   *Replace `<your-repository-url>` with your actual GitHub repository URL*
 
 2. **Install dependencies:**
    ```bash
@@ -87,18 +76,6 @@ npm --version
 4. **Open your browser:**
    The development server will start and show you the URL (usually [http://localhost:3000](http://localhost:3000)).
    If port 3000 is busy, Next.js will automatically use the next available port (3001, 3002, etc.).
-
-### Verification
-
-After starting the development server, you should see:
-
-- ✅ Server running message with the local URL
-- ✅ No build errors in the terminal
-- ✅ Website loads in browser with dark theme by default
-- ✅ Theme toggle button in the header works
-- ✅ All pages and components load correctly
-
-If you encounter any issues, check the [Troubleshooting](#troubleshooting) section below.
 
 ### First Time Setup
 
@@ -204,14 +181,7 @@ Edit the header in each page component (e.g., `app/page.tsx`):
 
 ## Building for Production
 
-### Development vs Production
-
-- **Development** (`npm run dev`): Runs with hot reload, full Next.js features, server-side rendering
-- **Production Build** (`npm run build`): Creates static files for deployment (configured for static export)
-
 ### Static Export (for GitHub Pages, Netlify, etc.)
-
-This project is configured for static export, which means:
 
 1. **Build the static files:**
    ```bash
@@ -260,46 +230,18 @@ If you need server-side features, remove the `output: 'export'` from `next.confi
 ## Development Commands
 
 ```bash
-# Start development server (with hot reload)
+# Start development server
 npm run dev
 
 # Build for production
 npm run build
 
-# Start production server (after build)
+# Start production server
 npm run start
 
 # Run linting
 npm run lint
 ```
-
-## Troubleshooting
-
-### Port Already in Use
-If you see "Port 3000 is already in use":
-- Next.js will automatically use the next available port (3001, 3002, etc.)
-- Or manually specify a port: `npm run dev -- -p 3001`
-
-### Theme Issues on New Computer
-If the theme doesn't work correctly:
-1. Open browser developer tools (F12)
-2. Go to Console tab
-3. Run: `localStorage.clear(); location.reload();`
-4. Or visit the reset page: `http://localhost:3000/reset-theme.html`
-
-### Build Errors
-- Ensure Node.js version is 18+
-- Clear node_modules: `rm -rf node_modules && npm install`
-- Clear Next.js cache: `rm -rf .next`
-
-### Slow Development Server
-- The project uses Turbopack for faster builds
-- If still slow, try: `npm run dev -- --turbo=false`
-
-### Dependencies Issues
-- Delete package-lock.json and node_modules
-- Run: `npm install` again
-- Ensure you're using npm (not yarn or pnpm)
 
 ## Browser Support
 

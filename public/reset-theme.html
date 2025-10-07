@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Theme to Light Mode</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        #status {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Theme Reset Utility</h1>
+        <p>Click the button below to reset your theme to Light Mode</p>
+        <button onclick="resetTheme()">Reset to Light Mode</button>
+        <button onclick="setDarkMode()">Set to Dark Mode (Test)</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        function resetTheme() {
+            // Clear all storage
+            localStorage.clear();
+            sessionStorage.clear();
+            
+            // Set light mode explicitly
+            localStorage.setItem('baker-tech-theme', 'light');
+            
+            // Remove dark class, add light class
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            
+            // Show status
+            document.getElementById('status').innerHTML = '✅ Theme reset to LIGHT mode!<br>Redirecting...';
+            
+            // Redirect to home page
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1500);
+        }
+        
+        function setDarkMode() {
+            localStorage.setItem('baker-tech-theme', 'dark');
+            document.getElementById('status').innerHTML = '🌙 Dark mode set!<br>Redirecting...';
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1500);
+        }
+        
+        // Show current theme on load
+        window.onload = () => {
+            const currentTheme = localStorage.getItem('baker-tech-theme');
+            if (currentTheme) {
+                document.getElementById('status').innerHTML = `Current theme: <strong>${currentTheme}</strong>`;
+            } else {
+                document.getElementById('status').innerHTML = 'No theme set in localStorage';
+            }
+        };
+    </script>
+</body>
+</html>

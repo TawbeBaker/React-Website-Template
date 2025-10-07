@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Theme</title>
+</head>
+<body>
+    <h1>Clearing localStorage and redirecting...</h1>
+    <script>
+        localStorage.removeItem('baker-tech-theme');
+        localStorage.clear();
+        setTimeout(() => {
+            window.location.href = 'http://localhost:3000';
+        }, 1000);
+    </script>
+</body>
+</html>

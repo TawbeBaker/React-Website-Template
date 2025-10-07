@@ -1,0 +1,169 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { Check } from 'lucide-react';
+import Link from 'next/link';
+
+const plans = [
+  {
+    name: 'Starter',
+    price: '$29',
+    period: '/month',
+    description: 'Perfect for small projects and personal websites',
+    features: [
+      'Up to 5 pages',
+      'Basic SEO optimization',
+      'Mobile responsive',
+      'Contact form',
+      'Social media integration',
+      '24/7 support',
+    ],
+    highlighted: false,
+    cta: 'Get Started',
+  },
+  {
+    name: 'Professional',
+    price: '$79',
+    period: '/month',
+    description: 'Ideal for growing businesses and startups',
+    features: [
+      'Unlimited pages',
+      'Advanced SEO tools',
+      'E-commerce ready',
+      'Blog & CMS integration',
+      'Analytics dashboard',
+      'Priority support',
+      'Custom domain',
+      'SSL certificate',
+    ],
+    highlighted: true,
+    cta: 'Start Free Trial',
+  },
+  {
+    name: 'Enterprise',
+    price: '$199',
+    period: '/month',
+    description: 'For large organizations with custom needs',
+    features: [
+      'Everything in Professional',
+      'Dedicated account manager',
+      'Custom integrations',
+      'Advanced security',
+      'White-label options',
+      'API access',
+      'Training sessions',
+      'SLA guarantee',
+    ],
+    highlighted: false,
+    cta: 'Contact Sales',
+  },
+];
+
+export default function Pricing() {
+  return (
+    <section className="py-20 bg-gray-900 light:bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl font-bold text-white light:text-gray-900 mb-4">
+            Simple, Transparent Pricing
+          </h2>
+          <p className="text-xl text-gray-300 light:text-gray-600 max-w-2xl mx-auto">
+            Choose the perfect plan for your needs. All plans include a 14-day free trial.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {plans.map((plan, index) => (
+            <motion.div
+              key={plan.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className={`relative rounded-2xl ${
+                plan.highlighted
+                  ? 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-2xl scale-105'
+                  : 'bg-gray-800 light:bg-white border border-gray-700 light:border-gray-200 shadow-lg'
+              }`}
+            >
+              {plan.highlighted && (
+                <div className="absolute -top-5 left-0 right-0 text-center">
+                  <span className="bg-yellow-400 text-gray-900 px-4 py-1 rounded-full text-sm font-semibold">
+                    Most Popular
+                  </span>
+                </div>
+              )}
+
+              <div className="p-8">
+                <h3 className={`text-2xl font-bold mb-2 ${
+                  plan.highlighted ? 'text-white' : 'text-white light:text-gray-900'
+                }`}>
+                  {plan.name}
+                </h3>
+                <p className={`mb-6 ${
+                  plan.highlighted ? 'text-indigo-100' : 'text-gray-300 light:text-gray-600'
+                }`}>
+                  {plan.description}
+                </p>
+
+                <div className="mb-8">
+                  <span className="text-5xl font-bold">{plan.price}</span>
+                  <span className={`text-xl ${
+                    plan.highlighted ? 'text-indigo-100' : 'text-gray-400 light:text-gray-600'
+                  }`}>
+                    {plan.period}
+                  </span>
+                </div>
+
+                <ul className="space-y-4 mb-8">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start">
+                      <Check className={`h-5 w-5 mt-0.5 mr-3 flex-shrink-0 ${
+                        plan.highlighted ? 'text-white' : 'text-indigo-400 light:text-indigo-600'
+                      }`} />
+                      <span className={
+                        plan.highlighted ? 'text-indigo-100' : 'text-gray-300 light:text-gray-600'
+                      }>
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  href="/contact"
+                  className={`block w-full py-3 px-6 rounded-lg font-semibold text-center transition-all ${
+                    plan.highlighted
+                      ? 'bg-white text-indigo-600 hover:bg-gray-100'
+                      : 'bg-indigo-600 text-white hover:bg-indigo-700 light:bg-indigo-500 light:hover:bg-indigo-600'
+                  }`}
+                >
+                  {plan.cta}
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center mt-12 text-gray-400 light:text-gray-600"
+        >
+          All plans include a 30-day money-back guarantee. Need a custom solution?{' '}
+          <Link href="/contact" className="text-indigo-400 light:text-indigo-600 hover:underline">
+            Contact us
+          </Link>
+        </motion.p>
+      </div>
+    </section>
+  );
+}

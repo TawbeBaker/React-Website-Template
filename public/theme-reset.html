@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Reset - Baker Tech</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        button {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        .success {
+            margin-top: 1rem;
+            color: #a0f0a0;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Theme Settings</h1>
+        <p>Having trouble with the theme? Reset it here.</p>
+        <button onclick="resetTheme()">Reset to Light Mode</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function resetTheme() {
+            try {
+                // Clear localStorage
+                localStorage.removeItem('baker-tech-theme');
+                localStorage.setItem('baker-tech-theme', 'light');
+                
+                // Show success message
+                const message = document.getElementById('message');
+                message.innerHTML = '<p class="success">✓ Theme reset successfully! Redirecting...</p>';
+                
+                // Redirect to home page
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 1500);
+            } catch (e) {
+                alert('Error resetting theme: ' + e.message);
+            }
+        }
+    </script>
+</body>
+</html>
